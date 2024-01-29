@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Chocolate Paradise</title>
+    <style type="text/css"> body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #8B4513;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+section {
+    padding: 50px 0;
+}
+
+.hero {
+    text-align: center;
+}
+
+.about-text {
+    width: 50%;
+    float: left;
+}
+
+.about-image {
+    width: 50%;
+    float: right;
+}
+
+.chocolate-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.chocolate {
+    margin: 20px;
+}
+
+.chocolate img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.contact-form {
+    max-width: 400px;
+    margin: auto;
+}
+
+footer {
+    background-color: #8B4513;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+</style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Chocolate Paradise Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#products">Our Chocolates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h1>Welcome to Chocolate Paradise</h1>
+            <p>Indulge in the finest chocolates crafted just for you.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-text">
+            <h2>About Us</h2>
+            <p>Discover the rich history and passion behind Chocolate Paradise. Our commitment is to provide you with the most exquisite chocolates, made with love and dedication.</p>
+        </div>
+        <div class="about-image">
+            <img src="images/about.jpg" alt="About Us Image">
+        </div>
+    </section>
+
+    <section id="products">
+        <h2>Our Chocolates</h2>
+        <div class="chocolate-gallery">
+            <!-- Add chocolate images dynamically using JavaScript -->
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-form">
+            <!-- Add a contact form here -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Chocolate Paradise. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js">
+        document.addEventListener('DOMContentLoaded', function () {
+    // Sample chocolate data
+    const chocolates = [
+        { name: 'Milk Chocolate', image: 'chocolate1.jpg' },
+        { name: 'Dark Chocolate', image: 'chocolate2.jpg' },
+        { name: 'White Chocolate', image: 'chocolate3.jpg' },
+    ];
+
+    const chocolateGallery = document.querySelector('.chocolate-gallery');
+
+    chocolates.forEach(chocolate => {
+        const chocolateDiv = document.createElement('div');
+        chocolateDiv.classList.add('chocolate');
+        chocolateDiv.innerHTML = `
+            <img src="images/${chocolate.image}" alt="${chocolate.name}">
+            <h3>${chocolate.name}</h3>
+        `;
+        chocolateGallery.appendChild(chocolateDiv);
+    });
+});
+
+    </script>
+</body>
+</html>

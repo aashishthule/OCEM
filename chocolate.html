@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choco Market</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .chocolate-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .chocolate {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px;
+            width: 200px;
+            background-color: white;
+        }
+
+        .cart-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #cart {
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Choco Market</h1>
+    </header>
+
+    <div class="chocolate-container" id="chocolate-container">
+        <!-- Chocolates will be dynamically added here using JavaScript -->
+    </div>
+
+    <div class="cart-container">
+        <h2>Your Cart</h2>
+        <div id="cart"></div>
+        <p>Total: $<span id="total">0.00</span></p>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+
+    <script>
+        // Sample chocolate data
+        const chocolates = [
+            { name: "Milk Chocolate", description: "Smooth and creamy", price: 2.50 },
+            { name: "Dark Chocolate", description: "Rich and bitter", price: 3.00 },
+            { name: "White Chocolate", description: "Sweet and milky", price: 2.75 },
+        ];
+
+        // Initialize chocolate container
+        const chocolateContainer = document.getElementById("chocolate-container");
+
+        // Populate chocolates
+        chocolates.forEach(chocolate => {
+            const chocolateElement = document.createElement("div");
+            chocolateElement.classList.add("chocolate");
+            chocolateElement.innerHTML = `
+                <h3>${chocolate.name}</h3>
+                <p>${chocolate.description}</p>
+                <p>$${chocolate.price.toFixed(2)}</p>
+                <button onclick="addToCart('${chocolate.name}', ${chocolate.price})">Add to Cart</button>
+            `;
+            chocolateContainer.appendChild(chocolateElement);
+        });
+
+        // Cart variables
+        const cart = [];
+        let total = 0;
+
+        // Function to add chocolate to the cart
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            total += price;
+            updateCart();
+        }
+
+        // Function to update the cart display
+        function updateCart() {
+            const cartElement = document.getElementById("cart");
+            const totalElement = document.getElementById("total");
+
+            cartElement.innerHTML = "";
+            cart.forEach(item => {
+                const itemElement = document.createElement("p");
+                itemElement.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+                cartElement.appendChild(itemElement);
+            });
+
+            totalElement.textContent = total.toFixed(2);
+        }
+
+        // Function to simulate checkout
+        function checkout() {
+            alert(`Thank you for shopping! Your total is $${total.toFixed(2)}`);
+            // Clear the cart after checkout
+            cart.length = 0;
+            total = 0;
+            updateCart();
+        }
+    </script>
+
+</body>
+</html>
